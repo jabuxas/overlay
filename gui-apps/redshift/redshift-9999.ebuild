@@ -5,17 +5,16 @@ EAPI=8
 
 PYTHON_COMPAT=( python3_{8..11} )
 
-inherit flag-o-matic systemd xdg-utils python-r1 autotools
+inherit flag-o-matic systemd xdg-utils python-r1 autotools git-r3
 
 DESCRIPTION="Fork of redshift with wayland support"
 HOMEPAGE="http://jonls.dk/redshift/"
-SRC_URI="https://github.com/minus7/redshift/archive/refs/heads/wayland.zip"
 
 LICENSE="GPL-3"
-SLOT="0"
-KEYWORDS="~amd64 ~arm64 ~ppc64 ~riscv ~x86"
 IUSE="appindicator geoclue gtk nls wayland"
-S=${WORKDIR}/redshift-wayland
+
+EGIT_REPO_URI="https://github.com/minus7/redshift.git"
+SLOT="0/9999"
 
 COMMON_DEPEND=">=x11-libs/libX11-1.4
 	x11-libs/libXxf86vm
