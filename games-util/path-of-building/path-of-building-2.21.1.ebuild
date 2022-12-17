@@ -18,8 +18,20 @@ SLOT="0"
 KEYWORDS="~amd64"
 
 DEPEND=""
-RDEPEND="${DEPEND}"
-BDEPEND=""
+RDEPEND="
+        ${DEPEND}
+        dev-lang/luajit
+        media-libs/libglvnd
+        media-fonts/ttf-bitstream-vera
+        media-fonts/liberation-fonts
+        >=dev-qt/qtcore-5.15.7
+        net-misc/curl
+"
+BDEPEND="
+        dev-util/meson
+        app-arch/unzip
+        dev-util/ninja
+"
 
 src_prepare() {
   default 
