@@ -1,0 +1,13 @@
+diff --git a/Makefile b/Makefile
+index 3696549..5106ead 100644
+--- a/Makefile
++++ b/Makefile
+@@ -7,7 +7,7 @@ DESTDIR          ?= /
+ PKG_CONFIG       ?= pkg-config
+ INSTALL          ?= install
+ RM               ?= rm
+-LUA_IMPL         ?= lua
++LUA_IMPL         ?= luajit
+ CC               ?= $(MAC_ENV) gcc
+ 
+ LUA_VERSION       = $(shell $(PKG_CONFIG) --print-provides --silence-errors $(LUA_IMPL))

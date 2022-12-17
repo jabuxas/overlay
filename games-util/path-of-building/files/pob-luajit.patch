@@ -1,0 +1,13 @@
+diff --git a/meson.build b/meson.build
+index 537e794..3c46c59 100644
+--- a/meson.build
++++ b/meson.build
+@@ -1,7 +1,7 @@
+ project('POB Frontend', 'cpp', default_options : ['cpp_std=c++17'])
+ 
+ qt5_dep = dependency('qt5', modules : ['Gui'])
+-lua_dep = dependency('lua51')
++lua_dep = dependency('luajit')
+ if build_machine.system() == 'darwin'
+    gl_dep = dependency('appleframeworks', modules: ['OpenGL'])
+ else

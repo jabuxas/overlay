@@ -1,0 +1,71 @@
+# Copyright 2022 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=8
+
+inherit cmake meson desktop xdg-utils
+
+DESCRIPTION="An offline build planner for Path of Exile using PoBFrontend, LocalIdentity's fork"
+HOMEPAGE="https://github.com/PathOfBuildingCommunity/PathOfBuilding"
+SRC_URI="
+         https://github.com/PathOfBuildingCommunity/PathOfBuilding/archive/refs/tags/v2.21.1.tar.gz -> ${P}.tar.gz
+		     https://gitlab.com/bcareil/pobfrontend/-/archive/master/pobfrontend-master.tar.gz
+		     https://github.com/Lua-cURL/Lua-cURLv3/archive/refs/tags/v0.3.13.tar.gz
+"
+S=${WORKDIR}/pobfrontend-master
+LICENSE="MIT"
+SLOT="0"
+KEYWORDS="~amd64"
+
+DEPEND=""
+RDEPEND="${DEPEND}"
+BDEPEND=""
+
+src_prepare() {
+  default 
+
+  cd "${WORKDIR}"/Lua-cURLv3-0.3.13 || die 
+  eapply "${FILESDIR}"/luacurl-luajit.patch
+
+  cd "${WORKDIR}"/pobfrontend-master || die
+  eapply "${FILESDIR}"/pob-luajit.patch
+}
+
+src_configure () {
+  cd "${WORKDIR}"/pobfrontend-master || die
+  meson_src_configure
+}
+
+src_compile () {
+  meson_src_compile || die "failed to build pobfrontend"
+
+  cd "${WORKDIR}"/Lua-cURLv3-0.3.13 || die
+  emake || die "failed to make"
+}
+
+src_install () {
+  local dest = "/opt/${P}"
+  mv "${WORKDIR}"/Lua-cURLv3-0.3.13/lcurl.so "${WORKDIR}"/PathOfBuilding-2.21.1 || die
+  mv "${WORKDIR}"/"${P}"-build/pobfrontend "${WORKDIR}"/PathOfBuilding-2.21.1 || die
+  cd "${WORKDIR}"
+  unzip "${WORKDIR}"/PathOfBuilding-2.21.1/runtime-win32.zip lua/xml.lua lua/base64.lua lua/sha1.lua || die
+  mv "${WORKDIR}"/lua/*.lua "${WORKDIR}"/PathOfBuilding-2.21.1 || die
+
+  dodir "${dest}"
+  mv "${WORKDIR}"/PathOfBuilding-2.21.1 "${dest}"
+
+  insinto /opt
+  mv "${dest}" /opt
+
+
+  dobin "${FILESDIR}"/PathOfBuilding || die
+  domenu "${FILESDIR}"/PathOfBuildingCommunity.desktop
+  doicon "${FILESDIR}"/PathOfBuilding-logo.png "${FILESDIR}"/PathOfBuilding-logo.svg || die
+}
+
+pkg_postinst() {
+	xdg_desktop_database_update
+}
+pkg_postrm() {
+	xdg_desktop_database_update
+}
