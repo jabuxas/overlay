@@ -26,6 +26,7 @@ RDEPEND="
         media-fonts/liberation-fonts
         >=dev-qt/qtcore-5.15.7
         net-misc/curl
+        dev-qt/qtgui
 "
 BDEPEND="
         dev-util/meson
