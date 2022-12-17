@@ -29,10 +29,12 @@ src_prepare() {
 
   cd "${WORKDIR}"/pobfrontend-master || die
   eapply "${FILESDIR}"/pob-luajit.patch
+
+  cd "${WORKDIR}"/PathOfBuilding-2.21.1 || die
+  eapply "${FILESDIR}"/disable-devmode.patch
 }
 
 src_configure () {
-  cd "${WORKDIR}"/pobfrontend-master || die
   meson_src_configure
 }
 
@@ -40,23 +42,25 @@ src_compile () {
   meson_src_compile || die "failed to build pobfrontend"
 
   cd "${WORKDIR}"/Lua-cURLv3-0.3.13 || die
-  emake || die "failed to make"
+  emake || die "failed to build lcurl.so"
 }
 
 src_install () {
-  local dest = "/opt/${P}"
-  mv "${WORKDIR}"/Lua-cURLv3-0.3.13/lcurl.so "${WORKDIR}"/PathOfBuilding-2.21.1 || die
-  mv "${WORKDIR}"/"${P}"-build/pobfrontend "${WORKDIR}"/PathOfBuilding-2.21.1 || die
   cd "${WORKDIR}"
   unzip "${WORKDIR}"/PathOfBuilding-2.21.1/runtime-win32.zip lua/xml.lua lua/base64.lua lua/sha1.lua || die
-  mv "${WORKDIR}"/lua/*.lua "${WORKDIR}"/PathOfBuilding-2.21.1 || die
+  # dodir /opt/"${PN}"
+  # mv "${WORKDIR}"/PathOfBuilding-2.21.1/* "${D}"
+  # mv "${WORKDIR}"/"${P}"-build/pobfrontend "${D}" || die
+  # mv "${WORKDIR}"/Lua-cURLv3-0.3.13/lcurl.so "${D}" || die
+  # mv "${S}"/lua "${D}" || die
 
-  dodir "${dest}"
-  mv "${WORKDIR}"/PathOfBuilding-2.21.1 "${dest}"
-
-  insinto /opt
-  mv "${dest}" /opt
-
+  cd "${WORKDIR}"/PathOfBuilding-2.21.1
+  insinto "/opt/${PN}"
+  doins -r *
+  insopts -m755
+  doins "${WORKDIR}"/"${P}"-build/pobfrontend
+  doins "${WORKDIR}"/Lua-cURLv3-0.3.13/lcurl.so
+  doins -r "${WORKDIR}"/lua || die
 
   dobin "${FILESDIR}"/PathOfBuilding || die
   domenu "${FILESDIR}"/PathOfBuildingCommunity.desktop
