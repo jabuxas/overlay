@@ -8,7 +8,7 @@ inherit cmake meson desktop xdg-utils
 DESCRIPTION="An offline build planner for Path of Exile using PoBFrontend, LocalIdentity's fork"
 HOMEPAGE="https://github.com/PathOfBuildingCommunity/PathOfBuilding"
 SRC_URI="
-         https://github.com/PathOfBuildingCommunity/PathOfBuilding/archive/refs/tags/v2.21.1.tar.gz -> ${P}.tar.gz
+         https://github.com/PathOfBuildingCommunity/PathOfBuilding/archive/refs/tags/v"${PV}".tar.gz -> ${P}.tar.gz
 		     https://gitlab.com/bcareil/pobfrontend/-/archive/master/pobfrontend-master.tar.gz
 		     https://github.com/Lua-cURL/Lua-cURLv3/archive/refs/tags/v0.3.13.tar.gz
 "
@@ -43,7 +43,7 @@ src_prepare() {
   cd "${WORKDIR}"/pobfrontend-master || die
   eapply "${FILESDIR}"/pob-luajit.patch
 
-  cd "${WORKDIR}"/PathOfBuilding-2.21.1 || die
+  cd "${WORKDIR}"/PathOfBuilding-"${PV}" || die
   eapply "${FILESDIR}"/disable-devmode.patch
 }
 
@@ -60,14 +60,14 @@ src_compile () {
 
 src_install () {
   cd "${WORKDIR}"
-  unzip "${WORKDIR}"/PathOfBuilding-2.21.1/runtime-win32.zip lua/xml.lua lua/base64.lua lua/sha1.lua || die
+  unzip "${WORKDIR}"/PathOfBuilding-"${PV}"/runtime-win32.zip lua/xml.lua lua/base64.lua lua/sha1.lua || die
   # dodir /opt/"${PN}"
-  # mv "${WORKDIR}"/PathOfBuilding-2.21.1/* "${D}"
+  # mv "${WORKDIR}"/PathOfBuilding-"${PV}"/* "${D}"
   # mv "${WORKDIR}"/"${P}"-build/pobfrontend "${D}" || die
   # mv "${WORKDIR}"/Lua-cURLv3-0.3.13/lcurl.so "${D}" || die
   # mv "${S}"/lua "${D}" || die
 
-  cd "${WORKDIR}"/PathOfBuilding-2.21.1
+  cd "${WORKDIR}"/PathOfBuilding-"${PV}"
   insinto "/opt/${PN}"
   doins -r *
   insopts -m755
