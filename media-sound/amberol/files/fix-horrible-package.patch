@@ -1,0 +1,17 @@
+diff --git a/Cargo.toml b/Cargo.toml
+index bafeabb..2f41465 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -44,3 +44,12 @@ version = "0.18"
+ [dependencies.gst-player]
+ package = "gstreamer-player"
+ version = "0.18"
++
++[source.gentoo-source]
++directory = "/var/tmp/portage/media-sound/amberol-0.9.2/work/cargo_home"
++
++[source.crates-io]
++replace-with = "gentoo-source"
++
++[net]
++offline = true
