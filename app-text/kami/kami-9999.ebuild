@@ -16,6 +16,11 @@ EGIT_REPO_URI="https://github.com/mrfluffy-dev/${PN}.git"
 LICENSE="GPL-3"
 SLOT="0/9999"
 
+RDEPEND = "
+  ${DEPEND}
+  sys-apps/bat
+  media-video/mpv
+"
 src_unpack() {
   git-r3_src_unpack
   cargo_live_src_unpack
