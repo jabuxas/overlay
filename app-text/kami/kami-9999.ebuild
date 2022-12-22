@@ -5,22 +5,19 @@
 
 EAPI=8
 
-inherit cargo xdg git-r3
+inherit cargo git-r3 xdg
 
 DESCRIPTION="A ln scraper to read light novels and watch anime in your terminal (Written in rust)."
-# Double check the homepage as the cargo_metadata crate
-# does not provide this value so instead repository is used
-HOMEPAGE="https://github.com/mrfluffy-dev/kami"
 EGIT_REPO_URI="https://github.com/mrfluffy-dev/${PN}.git"
-
-LICENSE="GPL-3"
+LICENSE="(Apache-2.0 Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD BSD-2 Boost-1.0 GPL-3 MIT MIT) MPL-2.0 Unlicense ZLIB" 
+HOMEPAGE="https://github.com/mrfluffy-dev/kami"
 SLOT="0/9999"
-
-RDEPEND = "
-  ${DEPEND}
+DEPEND="${RDEPEND}"
+RDEPEND="
   sys-apps/bat
   media-video/mpv
 "
+
 src_unpack() {
   git-r3_src_unpack
   cargo_live_src_unpack
