@@ -249,21 +249,31 @@ RDEPEND="
 
 DEPEND="${RDEPEND}"
 
+QA_FLAGS_IGNORED="usr/bin/${PN}"
+
 src_unpack() {
   cargo_src_unpack
 }
 
 src_configure () {
-  ln -s "${WORKDIR}"/cargo_home "${S}"/cargo-home
+  # upstream redefines CARGO_HOME, pointing to eclass defined
+  ln -s "${WORKDIR}"/cargo_home "${S}"/cargo-home || die
   meson_src_configure
-  default
 }
 
 src_compile () {
-  export ABI="64"
+  # ditto, except now build-dir
   ln -s "${WORKDIR}"/cargo_home "${WORKDIR}"/"${P}"-build/cargo-home
-  meson_src_compile
-  default
+
+  # gmp-mpfr-sys uses ${ABI} variable (32|64) that clashes with gentoo's standard variable.
+	local _abi
+	if [[ ${ABI} =~ 64 ]]; then
+		_abi="mode64"
+	else
+		_abi="32"
+	fi
+
+  ABI="${_abi}" meson_src_compile
 }
 
 src_install () {
