@@ -145,7 +145,7 @@ HOMEPAGE="https://github.com/mrfluffy-dev/kami"
 SRC_URI=" https://github.com/mrfluffy-dev/${PN}/archive/refs/tags/v${PV}.tar.gz
           $(cargo_crate_uris)"
 
-RDEPEND = "
+RDEPEND="
   ${DEPEND}
   sys-apps/bat
   media-video/mpv
