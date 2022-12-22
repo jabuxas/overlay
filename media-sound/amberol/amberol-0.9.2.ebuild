@@ -263,7 +263,7 @@ src_configure () {
 
 src_compile () {
   # ditto, except now build-dir
-  ln -s "${WORKDIR}"/cargo_home "${WORKDIR}"/"${P}"-build/cargo-home
+  ln -s "${WORKDIR}"/cargo_home "${WORKDIR}"/"${P}"-build/cargo-home || die
 
   # gmp-mpfr-sys uses ${ABI} variable (32|64) that clashes with gentoo's standard variable.
 	local _abi
