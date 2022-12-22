@@ -228,14 +228,6 @@ CRATES="
 
 inherit cargo gnome2-utils meson xdg 
 
-RDEPEND="
-    gui-libs/libadwaita
-    dev-libs/libportal[gtk]
-    media-libs/gstreamer
-    media-libs/gst-plugins-base
-    media-libs/gst-plugins-bad
-    media-libs/gst-plugins-good
-"
 
 HOMEPAGE="https://gitlab.gnome.org/World/amberol"
 DESCRIPTION="Simple GUI Music Player"
@@ -246,6 +238,16 @@ LICENSE="0BSD Apache-2.0 BSD GPL-3+ LGPL-3+ MIT Unlicense"
 SLOT="0"
 KEYWORDS="~amd64"
 
+RDEPEND="
+    gui-libs/libadwaita:1
+    dev-libs/libportal:=[gtk]
+    media-libs/gstreamer:1.0
+    media-libs/gst-plugins-base:1.0
+    media-libs/gst-plugins-bad:1.0
+    media-libs/gst-plugins-good:1.0
+"
+
+DEPEND="${RDEPEND}"
 
 src_unpack() {
   cargo_src_unpack
