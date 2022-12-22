@@ -268,7 +268,7 @@ src_compile () {
   # gmp-mpfr-sys uses ${ABI} variable (32|64) that clashes with gentoo's standard variable.
 	local _abi
 	if [[ ${ABI} =~ 64 ]]; then
-		_abi="mode64"
+		_abi="64"
 	else
 		_abi="32"
 	fi
