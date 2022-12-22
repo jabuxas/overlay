@@ -226,7 +226,7 @@ CRATES="
   libadwaita-sys-0.2.0-alpha.2
 "
 
-inherit cargo meson xdg gnome2-utils
+inherit cargo gnome2-utils meson xdg 
 
 RDEPEND="
     gui-libs/libadwaita
