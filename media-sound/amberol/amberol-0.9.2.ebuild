@@ -251,12 +251,6 @@ src_unpack() {
   cargo_src_unpack
 }
 
-src_prepare () {
-  eapply "${FILESDIR}"/fix-horrible-package.patch
-  eapply_user
-  default
-}
-
 src_configure () {
   ln -s "${WORKDIR}"/cargo_home "${S}"/cargo-home
   meson_src_configure
