@@ -236,7 +236,7 @@ SRC_URI=" https://gitlab.gnome.org/World/${PN}/-/archive/${PV}/${P}.tar.bz2
 
 LICENSE="0BSD Apache-2.0 BSD GPL-3+ LGPL-3+ MIT Unlicense"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86"
 
 RDEPEND="
     gui-libs/libadwaita:1
