@@ -14,31 +14,11 @@ HOMEPAGE="https://github.com/mrfluffy-dev/kami"
 SLOT="0/9999"
 DEPEND="${RDEPEND}"
 RDEPEND="
-  sys-apps/bat
-  media-video/mpv
+	sys-apps/bat
+	media-video/mpv
 "
 
 src_unpack() {
-  git-r3_src_unpack
-  cargo_live_src_unpack
-}
-
-src_configure () {
-  cargo_src_configure
-}
-
-src_compile () {
-  cargo_src_compile
-}
-
-src_install () {
-  cargo_src_install
-}
-
-pkg_postinst () {
-  xdg_pkg_postinst
-}
-
-pkg_postrm() {
-xdg_pkg_postrm
+	git-r3_src_unpack
+	cargo_live_src_unpack
 }

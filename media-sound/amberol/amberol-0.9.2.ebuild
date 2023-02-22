@@ -226,7 +226,7 @@ CRATES="
   libadwaita-sys-0.2.0-alpha.2
 "
 
-inherit cargo gnome2-utils meson xdg 
+inherit cargo gnome2-utils meson xdg
 
 
 HOMEPAGE="https://gitlab.gnome.org/World/amberol"
@@ -273,18 +273,23 @@ src_compile () {
 		_abi="32"
 	fi
 
-  ABI="${_abi}" meson_src_compile
+	ABI="${_abi}" meson_src_compile
 }
 
 src_install () {
-  meson_src_install
+	meson_src_install
 }
- 
+
 pkg_postinst() {
-  xdg_pkg_postinst
-  gnome2_schemas_update
+	xdg_pkg_postinst
+	gnome2_schemas_update
 }
 pkg_postrm() {
-  xdg_pkg_postrm
-  gnome2_schemas_update
+	xdg_pkg_postrm
+	gnome2_schemas_update
+}
+
+pkg(){
+	lmao
+	lmaooooooo kkkk
 }

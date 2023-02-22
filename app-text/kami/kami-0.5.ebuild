@@ -138,44 +138,18 @@ CRATES="
 
 inherit cargo xdg
 
-DESCRIPTION="A ln scraper to read light novels and watch anime in your terminal (Written in rust)."
-# Double check the homepage as the cargo_metadata crate
-# does not provide this value so instead repository is used
 HOMEPAGE="https://github.com/mrfluffy-dev/kami"
 SRC_URI=" https://github.com/mrfluffy-dev/${PN}/archive/refs/tags/v${PV}.tar.gz
-          $(cargo_crate_uris)"
+	$(cargo_crate_uris)"
+
+DESCRIPTION="A ln scraper to read light novels and watch anime in your terminal (Written in rust)."
 
 RDEPEND="
-  ${DEPEND}
-  sys-apps/bat
-  media-video/mpv
+	${DEPEND}
+	sys-apps/bat
+	media-video/mpv
 "
 
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64"
-
-src_unpack() {
-  cargo_src_unpack
-  default
-}
-
-src_configure () {
-  cargo_src_configure
-}
-
-src_compile () {
-  cargo_src_compile
-}
-
-src_install () {
-  cargo_src_install
-}
-
-pkg_postinst () {
-  xdg_pkg_postinst
-}
-
-pkg_postrm() {
-xdg_pkg_postrm
-}
