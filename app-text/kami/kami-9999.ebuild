@@ -9,13 +9,14 @@ inherit cargo git-r3 xdg
 
 DESCRIPTION="A ln scraper to read light novels and watch anime in your terminal (Written in rust)."
 EGIT_REPO_URI="https://github.com/mrfluffy-dev/${PN}.git"
-LICENSE="(Apache-2.0 Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD BSD-2 Boost-1.0 GPL-3 MIT MIT) MPL-2.0 Unlicense ZLIB" 
+LICENSE="(Apache-2.0 Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD BSD-2 Boost-1.0 GPL-3 MIT MIT) MPL-2.0 Unlicense ZLIB"
 HOMEPAGE="https://github.com/mrfluffy-dev/kami"
 SLOT="0/9999"
 DEPEND="${RDEPEND}"
 RDEPEND="
 	sys-apps/bat
 	media-video/mpv
+	media-libs/libsixel
 "
 
 src_unpack() {
