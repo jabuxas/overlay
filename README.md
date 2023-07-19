@@ -1,11 +1,10 @@
-## As of writing this repository is not yet added to the Trusted List on Portage Overlay.
+### The repository is on the official overlay website now.
 
-# Add overlay
+## Add overlay with `eselect-repository`
 ```sh
-eselect repository add jabuxas git https://github.com/jabuxas/overlay.git
-emaint sync -r jabuxas
+eselect repository enable jabuxas
 ```
-# To add manually:
+## To add manually:
 
 ```sh
 [jabuxas]
@@ -16,9 +15,10 @@ priority = 100
 ```
 Sync with `emaint sync -r jabuxas`
 
-# Packages
-- [path-of-building](https://pathofbuilding.community/) offline path of exile build planner
-- [kami](https://github.com/mrfluffy-dev/kami) favorite webnovel reader
-- [amberol](https://apps.gnome.org/app/io.bassi.Amberol/) gui music player
-- [redshift](http://jonls.dk/redshift/) night light but wayland fork
-- [wshowkeys](https://sr.ht/~sircmpwn/wshowkeys/) fork that should work with modern wlroots
+## Packages
+- [path-of-building](https://pathofbuilding.community/): offline path of exile build planner
+- [kami](https://github.com/mrfluffy-dev/kami): favorite webnovel reader
+- [amberol](https://apps.gnome.org/app/io.bassi.Amberol/): gui music player (I also mantain it on GURU)
+- [redshift](http://jonls.dk/redshift/): night light but wayland fork
+- [wshowkeys](https://sr.ht/~sircmpwn/wshowkeys/): fork that should work with modern wlroots
+- [linux wallpaper engine](https://github.com/Almamu/linux-wallpaperengine): wallpaper engine for linux 
