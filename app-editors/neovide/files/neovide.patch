@@ -1,0 +1,29 @@
+diff --git a/Cargo.toml b/Cargo.toml
+index a6c5ec6..43dae79 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -26,13 +26,13 @@ euclid = "0.22.7"
+ flexi_logger = { version = "0.22.3", default-features = false }
+ futures = "0.3.21"
+ gl = "0.14.0"
+-glutin = { git = "https://github.com/neovide/glutin", branch = "new-keyboard-all", features = ["serde"] }
++glutin = { version= "0.26.0", features = ["serde"] }
+ image = { version = "0.24.1", default-features = false, features = ["ico"] }
+ lazy_static = "1.4.0"
+ log = "0.4.16"
+ lru = "0.7.5"
+ neovide-derive = { path = "neovide-derive" }
+-nvim-rs = { git = "https://github.com/KillTheMule/nvim-rs", branch = "master", features = ["use_tokio"] }
++nvim-rs = { version = "0.5.0", features = ["use_tokio"] }
+ parking_lot = "0.12.0"
+ pin-project = "1.0.10"
+ rand = "0.8.5"
+@@ -45,7 +45,7 @@ tokio = { version = "1.17.0", features = ["full"] }
+ tokio-util = { version = "0.7.1", features = ["compat"] }
+ unicode-segmentation = "1.9.0"
+ which = "4.2.5"
+-winit = { git = "https://github.com/neovide/winit", branch = "new-keyboard-all" }
++winit = "0.25.0"
+ xdg = "2.4.1"
+ 
+ [dev-dependencies]

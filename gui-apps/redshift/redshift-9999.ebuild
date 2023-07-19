@@ -26,6 +26,7 @@ COMMON_DEPEND=">=x11-libs/libX11-1.4
 			   dev-libs/wayland-protocols )
 	gtk? ( ${PYTHON_DEPS} )"
 RDEPEND="${COMMON_DEPEND}
+	!x11-misc/redshift
 	gtk? ( dev-python/pygobject[${PYTHON_USEDEP}]
 		x11-libs/gtk+:3[introspection]
 		dev-python/pyxdg[${PYTHON_USEDEP}] )"
